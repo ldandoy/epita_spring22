@@ -44,7 +44,12 @@ body {
     display: flex;
     border: 1px solid grey;
     text-align: center;
-    height: 100px;
+    height: 150px;
     align-items: center;
     justify-content: center;
+}
+
+.grid .cell:hover {
+    background-color: blanchedalmond;
+    cursor: pointer;
 }
