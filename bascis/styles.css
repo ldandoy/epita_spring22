@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: wheat;
+}
+
+.bg_navy {
+    background: navy;
+}
+
+table thead.bg_navy {
+    background: green;
+}
+
+#first_table {
+    color: red;
+}
