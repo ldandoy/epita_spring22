@@ -7,5 +7,5 @@ https://github.com/ldandoy/epita_spring22
 - [ ] Create a HTML file (index.html)
 - [ ] Create a CSS file inside css folder (main.css)
 - [ ] Create a JS file inside js folder (main.js)
-- [ ] Create a div inside the index.js
+- [ ] Create a div inside the index.html
 - [ ] Add the style to create a red square for the div
