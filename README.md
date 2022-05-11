@@ -1,4 +1,4 @@
-# Exercices to do
+# Exercice to do
 
 - [ ] Create a new folder
 - [ ] Create two folders inside (CSS/JS)
