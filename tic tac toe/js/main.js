@@ -22,6 +22,7 @@ a1.addEventListener('click', function () {
 })*/
 
 let current_player = 0
+let winner = false
 const elements = ['X', 'O']
 
 const validationLine = (el1, el2, el3) => {
@@ -49,6 +50,14 @@ cells.forEach(cell => {
             // Check if there is a winner or let the second player plays
             if (validationLine(a1, a2, a3) ) {
                 console.log('winner !')
+                winner = true
+            }
+
+            // show the message if we have a winner
+            if (winner) {
+               let msg = document.querySelector('#msg')
+               msg.innerHTML = 'The winner is Player ' + (current_player+1)
+               msg.style.display = "block"
             }
 
             // Switch of players
