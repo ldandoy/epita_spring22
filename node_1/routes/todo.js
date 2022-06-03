@@ -4,6 +4,14 @@ const Router = express.Router()
 
 const todos = []
 
+/*
+Todo: {
+    id: 1,
+    label: "label test",
+    isDone: true
+}
+*/
+
 Router.get('/', (request, response) => {
     response.status(200).json(todos)
 })

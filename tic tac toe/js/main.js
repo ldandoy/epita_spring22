@@ -28,10 +28,7 @@ const elements = ['X', 'O']
 const validationLine = (el1, el2, el3) => {
     let valid = false
 
-    console.log("valid", el1.innerHTML, el2.innerHTML, el3.innerHTML)
-    
-    if (el1.innerHTML != '' && el2.innerHTML != '' && el3.innerHTML != '') {
-        console.log('valid')
+    if (el1.innerHTML == elements[current_player] && el2.innerHTML == elements[current_player] && el3.innerHTML == elements[current_player]) {
         valid = true
     }
 
@@ -42,33 +39,36 @@ const cells = document.querySelectorAll('.cell')
 cells.forEach(cell => {
     cell.addEventListener('click', (e) => {
         // console.log(e)
-        console.log(e.target.innerHTML)
-        if (e.target.innerHTML == '') {
-            // Put the element of the player in the cell
-            e.target.innerHTML = elements[current_player]
+        if (!winner) {
+            if (e.target.innerHTML == '') {
+                // Put the element of the player in the cell
+                e.target.innerHTML = elements[current_player]
 
-            // Check if there is a winner or let the second player plays
-            if (validationLine(a1, a2, a3) ) {
-                console.log('winner !')
-                winner = true
-            }
+                // Check if there is a winner or let the second player plays
+                if (validationLine(a1, a2, a3) ) {
+                    winner = true
+                }
 
-            // show the message if we have a winner
-            if (winner) {
-               let msg = document.querySelector('#msg')
-               msg.innerHTML = 'The winner is Player ' + (current_player+1)
-               msg.style.display = "block"
-            }
+                // show the message if we have a winner
+                if (winner) {
+                    let msg = document.querySelector('#msg')
+                    msg.innerHTML = 'The winner is Player ' + (current_player+1) + "<br /><a href=''>Rejouer</a>"
+                    msg.style.display = "block"
+                    let score = parseInt(document.querySelector('#player'+(current_player+1)+ " .score").innerHTML)
+                    score++
+                    document.querySelector('#player'+(current_player+1)+ " .score").innerHTML = score 
+                }
 
-            // Switch of players
-            if (current_player == 0) {
-                current_player = 1
+                // Switch of players
+                if (current_player == 0) {
+                    current_player = 1
+                } else {
+                    current_player = 0
+                }
             } else {
-                current_player = 0
+                // When there is a cliock on a cell already used
+                alert('Someone already play here !')
             }
-        } else {
-            // When there is a cliock on a cell already used
-            alert('Someone already play here !')
         }
     })
 })
