@@ -1,6 +1,8 @@
 const express = require('express')
 const morgan = require('morgan')
 
+const todoRouter = require('./routes/todo')
+
 const app = express()
 app.use(morgan('dev'))
 app.use(express.json())
@@ -23,6 +25,8 @@ app.post('/test', (request, response) => {
 app.get('/test', (request, response) => {
     return response.status(200).json('It works on /test !')
 })
+
+app.use('/todos', todoRouter)
 
 const PORT = 4500
 app.listen(PORT, () => {
