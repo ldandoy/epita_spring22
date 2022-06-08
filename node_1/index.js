@@ -1,7 +1,22 @@
 const express = require('express')
 const morgan = require('morgan')
+const mongoose = require('mongoose')
 
-const todoRouter = require('./routes/todo')
+try {
+    mongoose.connect('mongodb://127.0.0.1:27018/epita', {
+        authSource: "admin",
+        user: "root",
+        pass: "example",
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    console.log('Connect to DB !')
+} catch (error) {
+    console.log("Error DB connection: ", error)
+}
+
+const todoRouter = require('./routes/todoRoute')
+const messageRouter = require('./routes/messageRoute')
 
 const app = express()
 app.use(morgan('dev'))
@@ -12,7 +27,6 @@ app.get('/', function (request, response) {
 })
 
 app.post('/test', (request, response) => {
-    console.log(request.body)
     const {name} = request.body
 
     if (!name && name == "") {
@@ -27,6 +41,7 @@ app.get('/test', (request, response) => {
 })
 
 app.use('/todos', todoRouter)
+app.use('/messages', messageRouter)
 
 const PORT = 4500
 app.listen(PORT, () => {
