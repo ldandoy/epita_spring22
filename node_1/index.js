@@ -1,12 +1,14 @@
+require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
+const session = require('express-session')
 
 try {
-    mongoose.connect('mongodb://127.0.0.1:27018/epita', {
+    mongoose.connect(process.env.DB_URL, {
         authSource: "admin",
-        user: "root",
-        pass: "example",
+        user: process.env.DB_USER,
+        pass: process.env.DB_PASSWORD,
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
@@ -20,6 +22,17 @@ const messageRouter = require('./routes/messageRoute')
 const authRouter = require('./routes/authRoute')
 
 const app = express()
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        secure: false,
+        httpOnly: true
+    }
+}))
+
 app.use(morgan('dev'))
 app.use(express.json())
 
