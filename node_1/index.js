@@ -20,6 +20,7 @@ try {
 const todoRouter = require('./routes/todoRoute')
 const messageRouter = require('./routes/messageRoute')
 const authRouter = require('./routes/authRoute')
+const userRouter = require('./routes/userRoute')
 
 const app = express()
 
@@ -57,6 +58,7 @@ app.get('/test', (request, response) => {
 app.use('/todos', todoRouter)
 app.use('/messages', messageRouter)
 app.use('/', authRouter)
+app.use('/users', userRouter)
 
 const PORT = 4500
 app.listen(PORT, () => {
