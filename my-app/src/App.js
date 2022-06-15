@@ -9,10 +9,12 @@ import Button from "./components/Button"
 import Home from "./pages/Home"
 import Chuck from './pages/Chuck'
 
+import "./styles/main.css"
+
 const App = () => {
     return <>
         <BrowserRouter>
-            <div>
+            <div id="nav">
                 <Link to="/">Home</Link>
                 <Link to="/button">Button</Link>
                 <Link to="/chuck">Chuck Norris Fact</Link>
