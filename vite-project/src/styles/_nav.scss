@@ -1,6 +1,9 @@
 #nav {
     background-color: $primary-color;
     display: flex;
+    position: fixed;
+    width: 100%;
+    top: 0;
 
     a {
         text-decoration: none;

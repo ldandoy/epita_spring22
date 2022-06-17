@@ -1,0 +1,17 @@
+#jokes {
+    .joke {
+        border: 1px dotted gainsboro;
+        margin: 20px 0;
+        padding: 30px;
+        background-color: aliceblue;
+        border-radius: 20px;
+        box-shadow: 5px 5px 5px gray;
+
+        &:hover {
+            background-color: $primary-color;
+            color: $secondary-color;
+            cursor: pointer;
+            font-weight: 900;
+        }
+    }
+}

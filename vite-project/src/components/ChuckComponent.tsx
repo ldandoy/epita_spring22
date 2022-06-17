@@ -37,7 +37,7 @@ const ChuckComponent = () => {
       {isLoading && <div>Please wait, data are loading...</div>}
       
       {!isLoading && <div>
-        {jokes.map((joke:Joke, index:number) => <div key={`jokes-${index}`}>
+        {jokes.map((joke:Joke, index:number) => <div className='joke' key={`jokes-${index}`}>
           {joke.value}
         </div>)}  
       </div>}
