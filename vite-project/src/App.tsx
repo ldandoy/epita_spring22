@@ -1,15 +1,21 @@
 import React from 'react'
-import Animal from './components/Animal'
+import { Routes, Route, Link } from "react-router-dom"
 
-import Greetings from './components/Greetings'
+import Home from "./pages/HomePage"
+import ChuckPage from './pages/ChuckPage'
 
 const App = () => {
-  const age:number = 10
-
   return (<>
-    <div>App</div>
-    <Greetings firstname="Kim" age={age} />
-    <Animal />
+    <div id="nav">
+      <Link to='/'>Home</Link>
+      <Link to='/chuck'>Chuck</Link>
+    </div>
+    <div className='container'>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/chuck" element={<ChuckPage />} />
+      </Routes>
+    </div>
   </>)
 }
 
