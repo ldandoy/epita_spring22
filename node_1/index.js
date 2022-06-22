@@ -3,6 +3,7 @@ const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const session = require('express-session')
+const cors = require('cors')
 
 try {
     mongoose.connect(process.env.DB_URL, {
@@ -23,6 +24,7 @@ const authRouter = require('./routes/authRoute')
 const userRouter = require('./routes/userRoute')
 
 const app = express()
+app.use(cors())
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
