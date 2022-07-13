@@ -8,3 +8,7 @@ export type Message = {
     updated_at?: Date,
     __v: number
 }
+
+export type editMessageParams = {
+    name: string,
+}

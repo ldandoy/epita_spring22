@@ -3,19 +3,12 @@ const messageModel = require('../models/messageModel')
 
 const Router = express.Router()
 
-const auth = (req, res, next) => {
-    if (req.session.user) {
-        next()
-    }
-    return false
-}
-
 Router.get('/', async (req, res) => {
-    messages = await messageModel.find({}).populate('user')
+    messages = await messageModel.find({}).sort({created_at: 'desc'}).populate('user')
     return res.status(200).json(messages)
 })
 
-Router.get('/:messageId', auth, async (req, res) => {
+Router.get('/:messageId', async (req, res) => {
     const {messageId} = req.params
 
     message = await messageModel.findOne({_id: messageId})
@@ -24,6 +17,7 @@ Router.get('/:messageId', auth, async (req, res) => {
 
 Router.post('/', async (req, res) => {
     const {message} = req.body
+    message.user = req.session.user._id
 
     const messageObj = new messageModel(message)
     await messageObj.save()

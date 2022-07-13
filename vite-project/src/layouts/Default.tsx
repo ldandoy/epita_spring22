@@ -12,9 +12,11 @@ const Default: FC<{ children: ReactNode }> = ({ children }) => {
     const getData = async () => {
       const res = await getMe()
     
-      if (context.isAuth === false && res === null) {
+      if (res.status === false || context.isAuth == false) {
         context.updateAuth(false)
-        navigate('/login')
+        navigate('/login', { replace: true })
+      } else {
+        context.updateAuth(true)
       }
     }
 
@@ -25,10 +27,10 @@ const Default: FC<{ children: ReactNode }> = ({ children }) => {
     <div id="nav">
       <Link to='/'>Home</Link>
       <Link to='/chuck'>Chuck</Link>
-      <Link to='/message'>Messages</Link>
-      { context.isAuth && <Link to="/register">Register</Link> }
-      { context.isAuth && <Link to="/login">Login</Link> }
-      { !context.isAuth && <Link to="/logout">Logout</Link> }
+      <Link to='/messages'>Messages</Link>
+      { !context.isAuth && <Link to="/register">Register</Link> }
+      { !context.isAuth && <Link to="/login">Login</Link> }
+      { context.isAuth && <Link to="/logout">Logout</Link> }
     </div>
     
     <div className='container'>

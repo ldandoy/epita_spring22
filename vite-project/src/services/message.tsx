@@ -1,6 +1,6 @@
 import axios, {AxiosError} from 'axios'
 
-import { Message } from '../types/message'
+import { editMessageParams, Message } from '../types/message'
 
 export const getMessages = async () => {
     try {
@@ -18,9 +18,11 @@ export const getMessages = async () => {
     }
 }
 
-export const createMessage = async (data: Message) => {
+export const createMessage = async (data: editMessageParams) => {
     try {
-        const res = await axios.post('http://127.0.0.1:4500/messages', data, {
+        const res = await axios.post('http://127.0.0.1:4500/messages', {
+            message: data
+        }, {
             withCredentials: true
         })
         return res.data
