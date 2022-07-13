@@ -24,7 +24,10 @@ const authRouter = require('./routes/authRoute')
 const userRouter = require('./routes/userRoute')
 
 const app = express()
-app.use(cors())
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000'
+}))
 
 app.use(session({
     secret: process.env.SESSION_SECRET,

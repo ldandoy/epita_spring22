@@ -20,7 +20,8 @@ const userSchema = new mongoose.Schema({
     active: {
         type: Boolean,
         default: 1
-    }
+    },
+    messages: [mongoose.Types.ObjectId]
 }, {
     timestamps: {
         createdAt: 'created_at',

@@ -72,7 +72,7 @@ Router.get('/me', async (req, res) => {
 
         const user = await userModel.findById(req.session.user._id, {
             'password': 0
-        })
+        }).populate('messages')
 
         if (!user) {
             return res.status(500).json({"msg": "You are not authenticated !"})

@@ -12,7 +12,7 @@ const Default: FC<{ children: ReactNode }> = ({ children }) => {
     const getData = async () => {
       const res = await getMe()
     
-      if (context.isAuth == false && res === null) {
+      if (context.isAuth === false && res === null) {
         context.updateAuth(false)
         navigate('/login')
       }
