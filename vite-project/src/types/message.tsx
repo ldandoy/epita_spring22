@@ -9,6 +9,11 @@ export type Message = {
     __v: number
 }
 
+export type newMessageParams = {
+    name: string,
+}
+
 export type editMessageParams = {
+    _id: string,
     name: string,
 }

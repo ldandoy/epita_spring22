@@ -88,4 +88,12 @@ Router.get('/me', async (req, res) => {
     return res.status(500).json({"msg": "You are not authenticated !"})
 })
 
+Router.get('/logout', (req, res) => {
+    if (req.session.user) {
+        delete req.session
+    }
+
+    return res.status(200).json({'msg': 'Disconnexion !'})
+})
+
 module.exports = Router

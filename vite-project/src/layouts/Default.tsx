@@ -2,7 +2,7 @@ import React, {FC, ReactNode, useContext, useEffect} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 
 import { AuthContext } from '../contexts/Auth'
-import { getMe } from '../services/auth'
+import { getMe, logout } from '../services/auth'
 
 const Default: FC<{ children: ReactNode }> = ({ children }) => {
   const context = useContext(AuthContext)
@@ -23,6 +23,12 @@ const Default: FC<{ children: ReactNode }> = ({ children }) => {
     getData()
   }, [])
 
+  const onClickHandler = async () => {
+    logout()
+    context.updateAuth(false)
+    navigate('/login')
+  }
+
   return (<>
     <div id="nav">
       <Link to='/'>Home</Link>
@@ -30,7 +36,7 @@ const Default: FC<{ children: ReactNode }> = ({ children }) => {
       <Link to='/messages'>Messages</Link>
       { !context.isAuth && <Link to="/register">Register</Link> }
       { !context.isAuth && <Link to="/login">Login</Link> }
-      { context.isAuth && <Link to="/logout">Logout</Link> }
+      { context.isAuth && <button onClick={onClickHandler}>Logout</button> }
     </div>
     
     <div className='container'>

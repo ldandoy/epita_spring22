@@ -1,12 +1,12 @@
 import React, {useState, ChangeEvent, FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { editMessageParams } from '../types/message'
+import { newMessageParams } from '../types/message'
 import { createMessage } from '../services/message'
 
 const CreateMessage = () => {
     let navigate = useNavigate()
-    const [form, setForm] = useState<editMessageParams>({
+    const [form, setForm] = useState<newMessageParams>({
         name: ''
     })
 
